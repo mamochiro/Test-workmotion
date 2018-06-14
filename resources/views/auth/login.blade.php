@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.templateList')
 
 @section('content')
 <div class="jumbotron far">
