@@ -122,7 +122,7 @@ class GradeController extends Controller
           }elseif ($gradeList->grade == 'D') {
             $sumPoint = $sumPoint + (1 * $gradeList->weight) ;
             $pointUse = $pointUse +  $gradeList->weight;
-          }elseif ($gradeList->grade == 'E') {
+          }elseif ($gradeList->grade == 'F') {
             $sumPoint = $sumPoint + (0 * $gradeList->weight) ;
             $pointUse = $pointUse +  $gradeList->weight;
           }
@@ -160,7 +160,7 @@ class GradeController extends Controller
           }elseif ($gradeListcal->grade == 'D') {
             $sumPointCal = $sumPointCal + (1 * $gradeListcal->weight) ;
             $pointUseCal = $pointUseCal +  $gradeListcal->weight;
-          }elseif ($gradeListcal->grade == 'E') {
+          }elseif ($gradeListcal->grade == 'F') {
             $sumPointCal = $sumPointCal + (0 * $gradeListcal->weight) ;
             $pointUseCal = $pointUseCal +  $gradeListcal->weight;
           }
@@ -183,7 +183,7 @@ class GradeController extends Controller
           // code...
           $GPA = $sumPointCal / $pointUseCal ;
         }else{
-          $GPS = 0 ;
+          $GPA = 0 ;
         }
 
 
@@ -221,14 +221,27 @@ class GradeController extends Controller
       public function update(Request $request)
       {
           //
+
           $id    =  $request->id;
           $grade =  $request->grade;
-
+          if ($grade !== 'A' &&
+          $grade!== 'B+' &&
+          $grade !== 'C' &&
+          $grade!== 'C+' &&
+          $grade!== 'D' &&
+          $grade!=='D+' &&
+          $grade!=='D' &&
+          $grade!== 'F') {
+            // code...
+          return back()->with('warning', 'plese check input');
+          }else{
           $grades = Grades::find($id);
           $grades->grade = $grade;
           $grades->save();
-
           return back()->with('success', 'Update Success');
+        }
+
+
       }
 
       /**
