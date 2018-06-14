@@ -122,6 +122,7 @@
                                 <div class="form-group">
                                   <label for="message-text" class="col-form-label">Grade:</label>
                                   <input type="text"name="grade" id="grade" required>
+                                  <h6 >Please input a grade between A, B+, B, C+, C, D+, D, and F (Capital letter)</h6 >
                                 </div>
                             </div>
                             <div class="modal-footer">
